@@ -35,7 +35,7 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install --upgrade pip
-          pip install google-genai holidays
+          pip install google-genai markdown holidays
 
       - name: Check Korean Public Holiday
         id: holiday_checker
