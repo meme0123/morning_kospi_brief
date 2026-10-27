@@ -2,8 +2,11 @@
 import os
 import sys
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from google import genai
 from google.genai import types
+
+KST = ZoneInfo("Asia/Seoul")
 
 def main():
     # 1. prompt.txt 읽기
@@ -21,7 +24,7 @@ def main():
         sys.exit(1)
 
     client = genai.Client(api_key=api_key)
-    today_str = datetime.now().strftime("%Y년 %m월 %d일")
+    today_str = datetime.now(KST).strftime("%Y년 %m월 %d일")
 
     user_query = f"""
     오늘은 {today_str}입니다.
@@ -29,7 +32,7 @@ def main():
     간밤의 최신 글로벌 시장 데이터를 검색해 완성된 핀테크 대시보드 HTML 파일 전체를 작성해주세요.
     """
 
-    print(f"[{datetime.now().strftime('%H:%M:%S')}] 최신 마켓 데이터 검색 및 대시보드 앱 빌드 중...")
+    print(f"[{datetime.now(KST).strftime('%H:%M:%S')}] 최신 마켓 데이터 검색 및 대시보드 앱 빌드 중...")
 
     # 3. 모델 호출 (실시간 구글 검색 사용)
     try:
@@ -57,11 +60,11 @@ def main():
     html_code = html_code.strip()
 
     # 5. HTML 파일 저장
-    filename = f"dashboard_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
+    filename = f"dashboard_{datetime.now(KST).strftime('%Y%m%d_%H%M%S')}.html"
     with open(filename, "w", encoding="utf-8") as f:
         f.write(html_code)
 
-    print(f"[{datetime.now().strftime('%H:%M:%S')}] 대시보드 생성 완료: {filename}")
+    print(f"[{datetime.now(KST).strftime('%H:%M:%S')}] 대시보드 생성 완료: {filename}")
     print(f"👉 브라우저로 확인: explorer.exe {filename}")
 
 if __name__ == "__main__":
