@@ -55,6 +55,7 @@ def main():
             contents=user_query,
             config=types.GenerateContentConfig(
                 system_instruction=system_instruction,
+                tools=[types.Tool(google_search=types.GoogleSearch())],
                 response_mime_type="application/json",
                 temperature=0.2,
             ),
