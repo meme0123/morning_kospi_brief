@@ -2,8 +2,8 @@ name: Daily KOSPI/KOSDAQ Pre-Market Strategy
 
 on:
   schedule:
-    # 한국 시간(KST) 평일(월~금) 07:30 실행 (UTC 기준 일~목 22:30)
-    - cron: '30 22 * * 0-4'
+    # 한국 시간(KST) 평일(월~금) 07:47 실행 (UTC 기준 일~목 22:30)
+    - cron: '47 22 * * 0-4'
   workflow_dispatch:
 
 # GitHub Pages 배포를 위한 필수 권한 설정
